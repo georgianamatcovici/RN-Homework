@@ -44,6 +44,7 @@ for epoch in range(epochs):
         Y = np.exp(Z- np.max(Z, axis=1, keepdims=True)) 
         Y /= np.sum(Y, axis=1, keepdims=True) 
       
+        cross_entropy = -np.sum(Target_batch * np.log(Y + 1e-8)) / X_batch.shape[0]
 
         W_correction=X_batch.T.dot(Target_batch-Y) 
         W+=miu*W_correction/batch_size
